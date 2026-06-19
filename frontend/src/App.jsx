@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Contact from "./pages/Contact";
 import AddCourse from "./pages/AddCourse";
+import Admin from "./pages/Admin";
 
 import { ThemeProvider } from "./components/ThemeContext";
 
@@ -17,43 +18,21 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <ThemeProvider>
-
       <BrowserRouter>
-
         <Navbar />
 
         <div className="layout">
-
           <Sidebar />
 
           <main>
-
             <Routes>
-
-              <Route
-                path="/"
-                element={<Home />}
-              />
-
-              <Route
-                path="/courses"
-                element={<Courses />}
-              />
-
-              <Route
-                path="/contact"
-                element={<Contact />}
-              />
-
-              <Route
-                path="/add-course"
-                element={<AddCourse />}
-              />
-
+              <Route path="/" element={<Home />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/add-course" element={<AddCourse />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
-
           </main>
-
         </div>
 
         <Footer />
@@ -61,10 +40,9 @@ function App() {
         <ToastContainer
           position="top-right"
           autoClose={3000}
+          theme="colored"
         />
-
       </BrowserRouter>
-
     </ThemeProvider>
   );
 }
