@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Contact from "./pages/Contact";
 import AddCourse from "./pages/AddCourse";
+import CourseDetails from "./pages/CourseDetails";
 import Admin from "./pages/Admin";
 
 import { ThemeProvider } from "./components/ThemeContext";
@@ -30,6 +31,7 @@ function App() {
               <Route path="/courses" element={<Courses />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/add-course" element={<AddCourse />} />
+              <Route path="/course-details" element={<CourseDetails />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>
           </main>

@@ -1,79 +1,122 @@
 import { useState } from "react";
 import API from "../api/courseApi";
 import { toast } from "react-toastify";
-import { FaEnvelopeOpenText } from "react-icons/fa";
 
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
+
+  const [messages, setMessages] = useState([]);
+  const [showMessages, setShowMessages] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
-      toast.error("All fields are required");
+      toast.error("All Fields Required");
       return;
     }
 
     try {
       await API.post("/contact", formData);
-      toast.success("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      toast.success("Message Sent Successfully");
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
     } catch (error) {
-      toast.error("Failed to send message.");
+      toast.error("Failed To Send Message");
+    }
+  }
+
+  async function fetchMessages() {
+    try {
+      const response = await API.get("/contact");
+      setMessages(response.data);
+      setShowMessages(true);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Unable To Load Messages");
     }
   }
 
   return (
-    <div className="page-container" style={{ maxWidth: "600px" }}>
-      <h1>
-        <FaEnvelopeOpenText style={{ marginRight: "12px", verticalAlign: "middle" }} />
-        Contact Us
-      </h1>
-      <h3 style={{ marginBottom: "25px" }}>Get in touch with our team for guidance or custom MERN Stack training inquiries.</h3>
+    <div className="page-container">
+      <h1>Contact Us</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="contact-name">Your Name</label>
-          <input
-            id="contact-name"
-            type="text"
-            placeholder="e.g. John Doe"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={formData.name}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              name: e.target.value,
+            })
+          }
+        />
 
-        <div className="form-group">
-          <label htmlFor="contact-email">Email Address</label>
-          <input
-            id="contact-email"
-            type="email"
-            placeholder="e.g. john@example.com"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
-          />
-        </div>
+        <br />
+        <br />
 
-        <div className="form-group">
-          <label htmlFor="contact-message">Your Message</label>
-          <textarea
-            id="contact-message"
-            rows="5"
-            placeholder="How can we help you?"
-            value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            required
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={formData.email}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              email: e.target.value,
+            })
+          }
+        />
 
-        <button type="submit" style={{ marginTop: "10px" }}>Send Message</button>
+        <br />
+        <br />
+
+        <textarea
+          rows="5"
+          placeholder="Enter Message"
+          value={formData.message}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              message: e.target.value,
+            })
+          }
+        />
+
+        <br />
+        <br />
+
+        <button type="submit">Send Message</button>
       </form>
+
+      <br />
+
+      <button className="received-btn" onClick={fetchMessages}>
+        Received Messages
+      </button>
+
+      <br />
+      <br />
+
+      {showMessages && (
+        <div>
+          {messages.map((msg) => (
+            <div key={msg._id} className="message-card">
+              <h4>{msg.name}</h4>
+              <p>{msg.email}</p>
+              <p>{msg.message}</p>
+              <hr />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

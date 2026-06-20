@@ -944,3 +944,154 @@ footer h3 {
     padding: 20px;
   }
 }
+
+/* ==========================================================================
+   NEW COURSE DETAILS & RECEIVED MESSAGES STYLES (Appended)
+   ========================================================================== */
+
+/* Received Messages Button - contact page */
+
+.message-card {
+  background: green;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.message-card h4 {
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.message-card p {
+  margin-bottom: 5px;
+}
+
+/* Start Learning Button Click - from Dashboard */
+
+.course-details {
+  padding: 30px;
+}
+
+.course-hero {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 60px;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.course-hero button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: white;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.course-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.info-card {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.info-card svg {
+  font-size: 35px;
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+.learning-section,
+.progress-section,
+.module-section {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.learning-section ul {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.learning-section li {
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-fill {
+  width: 25%;
+  height: 100%;
+  background: #28a745;
+}
+
+.module-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-top: 10px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.module-card svg {
+  color: #007bff;
+  font-size: 22px;
+}
+
+/* Received Messages Button */
+
+.received-btn {
+  padding: 12px 20px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.received-btn:hover {
+  background: #0056b3;
+}
+
+/* Dark Mode Overrides for new components */
+
+.dark .hero,
+.dark .card,
+.dark .page-container,
+.dark .course-hero,
+.dark .info-card,
+.dark .learning-section,
+.dark .progress-section,
+.dark .module-section,
+.dark .module-card {
+  background: #333;
+  color: white;
+}
+
